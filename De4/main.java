@@ -1,0 +1,39 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package De4;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author arohigh
+ */
+public class main {
+    public static void main(String[] args) {
+        ArrayList listStudent = new ArrayList();
+        try {
+            FileReader fr = new FileReader("sinhvien.dat");
+            BufferedReader br = new BufferedReader(fr);
+            String line = "";
+            while((line=br.readLine())!=null){
+                String[] a = line.split("\\$");
+                Student st = new Student(a[0], a[1], a[2], a[3], a[4], a[5], Float.parseFloat(a[6]));
+                listStudent.add(st);
+            }
+            br.close();
+            fr.close();
+        } catch (Exception e) {
+        }
+        
+        for (int i = 0; i < listStudent.size(); i++) {
+            Student st = (Student)listStudent.get(i);
+            st.HienThi();
+            System.out.println("-----------------------------------");
+        }
+    }
+}
